@@ -3,8 +3,8 @@ kind: Secret
 metadata:
   name: test-secret
 data:
-  username: bXktYXBw
-  password: Mzk1MjgkdmRnN0pi
+  username: UserName
+  password: Passw0rdPassw0rd
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -13,7 +13,7 @@ metadata:
     app: mongo
   name: mongo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: mongo
@@ -60,10 +60,9 @@ spec:
             secretKeyRef:
               name: test-secret
               key: password
-      #   volumeMounts:
-      #   - name: "mongo-data-dir"
-      #     mountPath: "/data/db"
-      # volumes:
-      # - name: "mongo-data-dir"
-      #   persistentVolumeClaim:
-      #     claimName: "mongo-data"
+        volumeMounts:
+        - name: "mongo-data-dir"
+          mountPath: "/data/db"
+      volumes:
+      - name: "mongo-data-dir"
+        emptyDir: {}
