@@ -1,3 +1,3 @@
-Пока можно не смотреть волюмы не сделаны
+Задание на 3 (Normal)
 ---
 kubectl apply -f 10-mongodb/10-mongodb.yaml
